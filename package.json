@@ -1,0 +1,19 @@
+{
+  "name": "bibliotecavirtual",
+  "version": "1.0.0",
+  "description": "Creación de un sistema para el control de tesis y sus entregas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Biblioteca",
+    "Virttual"
+  ],
+  "author": "Otac",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.5",
+    "express": "^4.21.2"
+  }
+}
