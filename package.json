@@ -4,7 +4,7 @@
   "description": "Creación de un sistema para el control de tesis y sus entregas.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "Biblioteca",
@@ -15,5 +15,8 @@
   "dependencies": {
     "bootstrap": "^5.3.5",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^30.1.3"
   }
 }
