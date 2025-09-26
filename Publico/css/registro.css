@@ -1,0 +1,129 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.Izquierda{
+    width: 60%;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Estilos de formulario */
+.Izquierda>p,form{
+    width: 80%;
+}
+.Izquierda>form{
+    
+    height: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.Izquierda>form>div{
+    margin: 0;
+    width: 45%;
+    height: 25%;
+    margin-right: 34.5px;
+    display: flex;
+    flex-direction: column;
+    min-height: fit-content;
+}
+
+.Izquierda>form>div>label{
+    display: block;
+}
+
+.Izquierda>form>div>input,select{
+    height: 30px;
+}
+
+.Izquierda>p:nth-child(1){
+    color: #A8101A ;
+    font-size: 60px;
+    margin: 0;
+}
+
+.Izquierda>p,a{
+    color: #A8101A ;
+}
+
+.Izquierda>p:last-child{
+    color: black !important;
+}
+
+.Izquierda>button{
+    width: 300px;
+    height: 40px;
+    margin-top: 25px;
+    background-color: #A8101A;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+}
+
+/* Estilos de formulario ------------------------------------*/
+
+.Derecha{
+    width: 40%;
+    height: 100%;
+    background-color: #E7BCBF;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Derecha>p:nth-child(1){
+    color: #A8101A;
+    font-size: 60px;
+    margin: 0;
+}
+
+.Derecha>p:nth-child(2){
+    margin-bottom: 50px;
+}
+
+.Derecha>div{
+    border: 2px solid black !important;
+    border-radius: 5px;
+}
+
+.html5-qrcode-element{
+    text-decoration: none !important;
+    background-color: #A8101A;
+    border:0;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.check{
+    animation-name: zoomout;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes zoomout{
+from {
+    width: 300px;
+    height: 300px;
+  }
+  to {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
