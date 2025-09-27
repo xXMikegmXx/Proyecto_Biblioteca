@@ -1,0 +1,73 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+/* 1. BARRA LATERAL (NAVBAR VERTICAL FIJO) */
+.sidebar {
+    position: fixed; /* Lo fija a la vista */
+    top: 0; 
+    left: 0;
+    width: 240px; 
+    height: 100vh; /* Alto completo */
+    background-color: #beeeee; /* Fondo Gris */
+    color: #ecf0f1;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Contenedor Flex para alinear las imágenes a los extremos */
+.image-header {
+    display: flex;
+    justify-content: space-between; /* Alinea a extremos */
+    align-items: center;
+    padding: 5px 10px;
+    border-bottom: 1px solid #95a5a6;
+}
+
+.nav-image {
+    width: 40px; 
+    height: auto; 
+    object-fit: cover;
+}
+
+/* Estilos de la lista */
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.nav-item{
+    display: block;
+    padding: 15px 25px;
+    transition: background-color 0.3s;
+    background-color: #7f8c9d;
+    border-bottom: 1px solid #95a5a6;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* 2. CONTENIDO PRINCIPAL (FONDO BLANCO) */
+.content {
+    margin-left: 240px; /* Desplaza el contenido, igual al ancho del sidebar */
+    padding: 40px;
+    background-color: blue; /* Fondo Blanco Explícito */
+    font-family: 'Inter', arial;
+    min-height: 100vh;
+    width: calc(100% - 240px); /* Ocupa el resto del espacio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es largo */
+    box-sizing: border-box; /* Incluye padding en el cálculo del ancho */   
+}
