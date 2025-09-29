@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/js/Librerias/html5-qrcode.min.js" ></script>
+        <script src="/js/FormularioScaner.js" ></script>
+        <link rel="stylesheet" href="/css/registro.css">
+    </head>
+    <body>
+        
+        <div class="Izquierda">
+            <p>Registro</p>
+            
+            <p>Ingresar tus datos</p>
+
+            <form>
+                <label for="nombre">Nombres(s)</label>
+                <input id="nombre" name="nombre">
+                <label>Apellido materno</label>
+                <input id="apellidoM">
+                <label>Apellido paterno</label>
+                <input id="apellidoP">
+                <label>Número de boleta</label>
+                <input id="boleta">
+                <label>Correo Electrónico</label>
+                <input id="correo">
+                <label>Carrera</label>
+                <select>
+                    <option>Telemática</option>
+                    <option>Mecatrónica</option>
+                    <option>Bionica</option>
+                </select>
+                <label>Contraseña</label>
+                <input id="password">
+                <label>Repetir Contraseña</label>
+                <input>
+            </form>
+            <button>Registrar</button>
+        </div>
+        <div class="Derecha">
+            <p>Validación</p>
+            <p>Escanea el QR de tu credencial para validar tu información</p>
+            <div id="view" style="width: 250px; height: 250px;">   
+            </div>
+        </div>
+    </body>
+</html>

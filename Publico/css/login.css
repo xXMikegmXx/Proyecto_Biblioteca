@@ -1,0 +1,83 @@
+
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.Derecha{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Izquierda{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E7BCBF;
+}
+
+.Derecha>p{
+    margin: 0;
+    width: 80%;
+    color: #A8101A;
+}
+
+.Derecha>p:nth-child(1){
+    font-size: 60px;
+}
+
+.Derecha>p:nth-child(2){
+    font-size: 20px;
+}
+
+/*Formulario estilos */
+.Derecha > form{
+    width: 80%;
+    height: 50%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+
+
+.Derecha>form>label{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.Derecha>form>input{
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.Derecha>form>button{
+    margin-top: 15px;
+    width: 80%;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #A8101A;
+    color: white;
+}
+
+.Izquierda>img{
+    height: 80%;
+    width: 90%;
+}

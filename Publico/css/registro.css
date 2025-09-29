@@ -1,0 +1,46 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.Izquierda{
+    width: 60%;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Izquierda>p,form{
+    width: 80%;
+}
+
+.Izquierda>form>label,input,select{
+    display: flex;
+    width: 45%;
+}
+
+.Izquierda>button{
+    width: 300px;
+    height: 40px;
+    background-color: #A8101A;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+}
+
+.Derecha{
+    width: 40%;
+    height: 100%;
+    background-color: #E7BCBF;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
