@@ -2,6 +2,7 @@
 const express = require('express');
 const funciones = require('./Classes/FuncionesGenericas'); 
 const db = require('./Classes/DB');
+const persona = require('./Classes/Persona');
 const path = require('path');
 const app = express();
 const port = 3000;
@@ -25,6 +26,24 @@ app.post('/QR',async function (reques,response) {
     let {url} = reques.body;
     data = await funciones.ExtraerInformacion(url);
     response.json(data);
+})
+
+app.post('/altaAlumno',async function (reques,response) {
+    data = await persona.Ingresar(reques.body);
+    response.json(data);
+})
+
+app.get('/dashboard',async function (reques,response) {
+    try{
+        data = await persona.Info("2019640034");
+        response.json(data);
+    }catch(e){
+        response.json({
+            message:e.message
+        });
+    }
+    
+    
 })
 
 app.listen(port,()=>{

@@ -4,12 +4,10 @@ require('dotenv').config({ path: path.resolve(__dirname, '../acces.env') });
 const mysql = require('mysql2/promise');
 
 class DB {
-    static pool;
+    static pool = null;
 
     constructor(){
-        if (!pool){
-            pool=CrearConexion();
-        }
+        this.pool = DB.pool;
     }
 
     static async CrearConexion() {
@@ -30,7 +28,8 @@ class DB {
             conexion = await pool.getConnection();
             await conexion.ping();
             console.log("Conexión exitosa con la base de datos");
-            return pool;
+            DB.pool = conexion;
+            return conexion;
         } catch (e) {
             console.error("Error de conexión con la base de datos:", e);
             return false;
@@ -38,6 +37,7 @@ class DB {
             if (conexion) conexion.release(); 
         }
     }
+
 }
 
 module.exports = DB;

@@ -3,6 +3,7 @@
     <head>
         <script src="/js/Librerias/html5-qrcode.min.js" ></script>
         <script src="/js/FormularioScaner.js" ></script>
+        <script src="/js/Registro.js" ></script>
         <link rel="stylesheet" href="/css/registro.css">
     </head>
     <body>
@@ -12,31 +13,31 @@
             
             <p>Ingresar tus datos</p>
 
-            <form>
+            <form id="form">
                 <div>
                     <label for="nombre">Nombres(s)</label>
                     <input id="nombre" name="nombre">
                 </div>
                 <div>
                     <label for="apellidoP">Apellido paterno</label>
-                    <input id="apellidoP"> 
+                    <input id="apellidoP" name="apellidoP"> 
                 </div>
                 <div>
                     <label for="apellidoM">Apellido materno</label>
-                    <input id="apellidoM">
+                    <input id="apellidoM" name="apellidoM">
                 </div>
                 
                 <div>
                     <label for="boleta">Número de boleta</label>
-                    <input id="boleta">  
+                    <input id="boleta" name="boleta">  
                 </div>
                 <div>
                     <label for="correo">Correo Electrónico</label>
-                    <input id="correo">
+                    <input id="correo" name="correo">
                 </div>
                 <div>
                      <label for="carrera">Carrera</label>
-                    <select id="carrera">
+                    <select id="carrera" name="carrera">
                         <option value="INGENIERÍA TELEMÁTICA">INGENIERÍA TELEMÁTICA</option>
                         <option value="INGENIERÍA MECATRÓNICA">INGENIERÍA MECATRÓNICA</option>
                         <option value="INGENIERÍA BIÓNICA">INGENIERÍA BIÓNICA</option>
@@ -47,14 +48,21 @@
                 </div>
                 <div>
                     <label for="password">Contraseña</label>
-                    <input id="password">
+                    <input id="password" name="password">
                 </div>
                 <div>
                     <label for="repetir">Repetir Contraseña</label>
                     <input id="repetir">
                 </div>
+                <div>
+                    <label for="sexo">Sexo</label>
+                    <select id="sexo" name="sexo">
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>                        
+                    </select>
+                </div>
             </form>
-            <button>Registrar</button>
+            <button onclick="RegistrarAlumno()">Registrar</button>
             <p>Ya tienes una cuenta <a href="/login">Ingresa aqui</a></p>
         </div>
         <div class="Derecha" id="Derecha">

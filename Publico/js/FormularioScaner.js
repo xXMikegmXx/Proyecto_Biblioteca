@@ -52,7 +52,8 @@ function ReadQR (View,text){
             dowload.remove();
             let img = document.createElement("img");
             img.src = "/recursos/Check.png";
-            img.className = "check";   
+            img.className = "check";
+            img.id = "check";
             document.getElementById("Derecha").appendChild(img);
 
             document.getElementById("nombre").value = data.nombre;

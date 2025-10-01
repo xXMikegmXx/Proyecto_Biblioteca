@@ -30,8 +30,11 @@ async function ExtraerInformacion(url){
         ApellidoPaterno = partes[partes.length - 2];
         ApellidoMaterno = partes[partes.length - 1];
 
-        Nombre = nombre.replace(ApellidoPaterno,"");
-        Nombre = Nombre.replace(ApellidoMaterno,"");
+        let Nombre= partes[0];
+
+        for(let i=1;i<partes.length-2;i++){
+            Nombre = Nombre +" "+partes[i];
+        }
 
         return JSON.stringify({
                 boleta:boleta,
@@ -50,6 +53,14 @@ async function ExtraerInformacion(url){
 
 }
 
+function MensajeError(mensaje){
+        return {
+                    "error":false,
+                    "mensaje": mensaje
+        };
+}
+
 module.exports = {
-  ExtraerInformacion
+  ExtraerInformacion,
+  MensajeError
 };

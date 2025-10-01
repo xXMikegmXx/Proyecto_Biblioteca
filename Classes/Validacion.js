@@ -9,7 +9,6 @@ class Validacion{
             return false;
         }
     }
-
 }
 
 module.exports = Validacion;

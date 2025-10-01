@@ -16,7 +16,7 @@ body{
     flex-direction: column;
 }
 
-/* Estilos de formulario */
+/* Estilos de formulario ------------------------------ */
 .Izquierda>p,form{
     width: 80%;
 }
@@ -32,7 +32,7 @@ body{
 .Izquierda>form>div{
     margin: 0;
     width: 45%;
-    height: 25%;
+    height: 20%;
     margin-right: 34.5px;
     display: flex;
     flex-direction: column;
