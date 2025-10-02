@@ -28,5 +28,3 @@ class Validacion{
     }
     
 }
-
-module.exports = Validacion;

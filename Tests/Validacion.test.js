@@ -17,3 +17,40 @@ describe('Validacion de boleta',()=>{
         });
     }
 );
+
+const Correo = require('../Classes/Validacion');
+
+describe ('Validacion de correo',()=> {
+    test('Validacion correo casos aceptados',()=>{
+        expect(Correo.EsCorreo("mgomezm1500@alumno.ipn.mx")).toBe(true);
+        expect(Correo.EsCorreo("alumno@gmail.com")).toBe(true);
+        expect(Correo.EsCorreo("profe@ipn.mx")).toBe(true);
+        expect(Correo.EsCorreo("alumno@yahoo.com")).toBe(true);
+        expect(Correo.EsCorreo("alumno@outlook.com")).toBe(true);
+        expect(Correo.EsCorreo("alumno@hotmail.com")).toBe(true);
+        expect(Correo.EsCorreo("NOMBRE.APELLIDO@GMAIL.COM")).toBe(true);  
+        expect(Correo.EsCorreo("user+alias@outlook.com")).toBe(true);      
+        expect(Correo.EsCorreo("alumno123@yahoo.com")).toBe(true);         
+        expect(Correo.EsCorreo("m.gomez@ipn.mx")).toBe(true);
+    });
+    test('Validacion correo casos no aceptados',()=>{
+        expect(Correo.EsCorreo("JuanHernandez@mercadolibre.com")).toBe(false);
+        expect(Correo.EsCorreo("alumno@gmail.")).toBe(false);
+        expect(Correo.EsCorreo("alumno@ .com")).toBe(false);
+        expect(Correo.EsCorreo("alumno@@.com")).toBe(false);
+        expect(Correo.EsCorreo("alumnogmail.com")).toBe(false);
+        expect(Correo.EsCorreo("alumno@gmailcom")).toBe(false);
+        expect(Correo.EsCorreo("@gmail.com")).toBe(false);
+        expect(Correo.EsCorreo(" @gmail.com")).toBe(false);
+        expect(Correo.EsCorreo("alumno@subdominio.ipn.mx")).toBe(false);
+        expect(Correo.EsCorreo("alumno@GMAIL.con")).toBe(false);
+        expect(Correo.EsCorreo("alumno@ipn.com")).toBe(false);
+        expect(Correo.EsCorreo("alumno@")).toBe(false);
+        expect(Correo.EsCorreo("alumno@ outlook.com")).toBe(false);
+        expect(Correo.EsCorreo("alumno@localhost")).toBe(false);
+        expect(Correo.EsCorreo("alumno@empresa.corporate")).toBe(false);
+        expect(Correo.EsCorreo("")).toBe(false);
+        expect(Correo.EsCorreo(" ")).toBe(false);
+        expect(Correo.EsCorreo("          ")).toBe(false);
+    })
+})
