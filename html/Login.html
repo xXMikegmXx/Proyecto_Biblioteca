@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/login.css">
+        <script src="/js/Login.js" ></script>
         <meta charset="utf-8">
     </head>
     <body>
@@ -12,13 +13,14 @@
         <div class="Derecha">
             <p>Bienvenido</p>
             <p>Ingresa tus credenciales</p>
-            <form>
+            <form id="login">
                 <label>Número de boleta</label>
-                <input>
+                <input id="boleta" name="boleta">
                 <label>Contraseña</label>
-                <input>
-                <button>Ingresar</button>
+                <input id="password" name="password">
+                <button type="button" onclick="IniciarSesion()">Ingresar</button>
             </form>
+            
             <p>¿No tienes cuenta? <a href="/registro">Crea una nueva cuenta aqui</a></p>
         </div>
     </body>

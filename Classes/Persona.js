@@ -4,10 +4,12 @@ const genericas = require('./FuncionesGenericas');
 
 class persona{
 
+    #password;
+
     constructor(informacion){
         this.boleta=informacion.boleta;
         this.nombre=informacion.Nombre;
-
+        this.#password=informacion.Password;
         let apellidos = informacion.Nombre.split(" ");
 
         this.apellidoP=apellidos[apellidos.length-2];
@@ -66,13 +68,21 @@ class persona{
                 let alumno = new persona(respuesta[0][0]);
                 return alumno;
             }else{
-                throw new Error("Usuario no encontrado");
+                return false;
             }
 
         }catch(e){
             throw e;
         }
         
+    }
+
+    verificacion(password){
+        if(password== this.#password){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

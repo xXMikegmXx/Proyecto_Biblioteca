@@ -1,11 +1,23 @@
-
 const express = require('express');
+const session = require('express-session');
 const funciones = require('./Classes/FuncionesGenericas'); 
 const db = require('./Classes/DB');
 const persona = require('./Classes/Persona');
 const path = require('path');
 const app = express();
 const port = 3000;
+
+require('dotenv').config({ path: path.resolve(__dirname, '/acces.env') });
+
+app.use(session({
+  secret: process.env.SECRET, 
+  resave: false,                    
+  saveUninitialized: false,          
+  cookie: {
+    httpOnly: true,
+    maxAge: 2000 * 60 * 60
+  }
+}));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'Publico')));
@@ -15,7 +27,11 @@ app.get('/ScanerCredencial',async function (reques,response) {
 });
 
 app.get('/login',async function (reques,response) {
-    response.sendFile(path.join(__dirname,"html/Login.html"));
+     if(reques.session && reques.session.boleta){
+        response.redirect('/dashboard');
+    }else{
+        response.sendFile(path.join(__dirname,"html/Login.html"));
+    }
 })
 
 app.get('/registro',async function (reques,response) {
@@ -34,17 +50,53 @@ app.post('/altaAlumno',async function (reques,response) {
 })
 
 app.get('/dashboard',async function (reques,response) {
-    try{
-        data = await persona.Info("2019640034");
-        response.json(data);
-    }catch(e){
-        response.json({
-            message:e.message
-        });
+    if(reques.session && reques.session.boleta){
+        try{
+            data = await persona.Info("2019640034");
+            response.sendFile(path.join(__dirname,"html/Dashboard.html"));
+        }catch(e){
+            response.json({
+                message:e.message
+            });
+        }
+    }else{
+        response.redirect('/login');
     }
-    
-    
+   
 })
+
+app.post('/login',async function (reques,response) {
+
+    let {boleta,password} = reques.body;
+
+    try{
+        alumno = await persona.Info(boleta);
+
+        if(alumno){
+            if(alumno.verificacion(password)){
+                reques.session.regenerate((err) => {
+                    if (err) return next(err);
+                    reques.session.boleta = boleta;
+                    reques.session.save(err => {
+                        if (err) return next(err);
+                        response.json({
+                                message:"Validacion correcta"
+                            });
+                        });
+                });
+                
+            }else{
+                response.json(funciones.MensajeError("Contraseña incorrecta"));
+            }
+        }else{
+            response.json(funciones.MensajeError("Usuario no encontrado"));
+        }
+
+    }catch(e){
+        console.error(e);
+        response.json(funciones.MensajeError(e));
+    }
+});
 
 app.listen(port,()=>{
     console.log(`Servicio en alta escuchando en el puerto : ${port}`);
