@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const fs = require("fs");
 const funciones = require('./Classes/FuncionesGenericas'); 
 const db = require('./Classes/DB');
 const persona = require('./Classes/Persona');
@@ -52,8 +53,18 @@ app.post('/altaAlumno',async function (reques,response) {
 app.get('/dashboard',async function (reques,response) {
     if(reques.session && reques.session.boleta){
         try{
-            data = await persona.Info("2019640034");
-            response.sendFile(path.join(__dirname,"html/Dashboard.html"));
+            let data = await persona.Info("2019640034");
+            let ruta = path.join(__dirname,"html","Dashboard.html");
+
+            let html = await fs.readFileSync(ruta, "utf8");
+
+            html = html.replace("{{Carrera}}",data.carrera);
+            html = html.replace("{{Nombre}}",data.nombre);
+            html = html.replace("{{Letra}}",data.nombre[0]);
+
+            response.send(html);
+            
+            
         }catch(e){
             response.json({
                 message:e.message
@@ -64,6 +75,22 @@ app.get('/dashboard',async function (reques,response) {
     }
    
 })
+
+app.get('/contenido',async function(reques,response) {
+
+    let contenido = reques.query.contenido;
+
+    try{
+
+        let ruta = path.join(__dirname,"html",`${contenido}.html`);
+        let html = await fs.readFileSync(ruta, "utf8");
+
+        response.type("html").send(html);
+    }catch(e){
+        response.json(funciones.MensajeError(`Error: ${e}`));
+    }
+    
+});
 
 app.post('/login',async function (reques,response) {
 

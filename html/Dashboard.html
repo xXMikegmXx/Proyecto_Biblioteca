@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/Dashboard.js" ></script>
     <title>Biblioteca (UPIITA)</title>
     <link rel="icon" type="image/png" href="/recursos/libro.png">
     <link rel="stylesheet" href="css/dashboard.css">
@@ -26,15 +27,21 @@
         </div>
         
         <ul class="nav-list">
-            <li class="nav-item"><a>Tesis</a></li>
+            <li class="nav-item" onclick="contenidoTesis()"><a>Tesis</a></li>
             <li class="nav-item"><a>Formatos</a></li>
             <li class="nav-item"><a>Información</a></li>
         </ul>
     </nav>
 
     <main class="content">
-        <h1>Contenido Principal (fondo de distinto color.)</h1>
-        <p>Este es el espacio a la derecha, con fondo de color.</p>
+        <nav class="nav_horizontal">
+            <p id="carrera">{{Carrera}}</p>
+            <p id="nombre">{{Nombre}}</p>
+            <div>{{Letra}}</div>
+        </nav>
+        <div id="cuerpo">
+
+        </div>
     </main>
 
 </body>
