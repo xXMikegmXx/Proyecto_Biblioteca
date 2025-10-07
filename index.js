@@ -53,7 +53,7 @@ app.post('/altaAlumno',async function (reques,response) {
 app.get('/dashboard',async function (reques,response) {
     if(reques.session && reques.session.boleta){
         try{
-            let data = await persona.Info("2019640034");
+            let data = await persona.Info(reques.session.boleta);
             let ruta = path.join(__dirname,"html","Dashboard.html");
 
             let html = await fs.readFileSync(ruta, "utf8");
@@ -123,6 +123,29 @@ app.post('/login',async function (reques,response) {
         console.error(e);
         response.json(funciones.MensajeError(e));
     }
+});
+
+app.get('/alumno',async function (reques,response) {
+        if(reques.session && reques.session.boleta){
+            let boleta = reques.query.boleta;
+
+            let data = await persona.Info(boleta);
+
+            if(data){
+
+                if(!data.tesis){
+                    response.json(data);
+                }else{
+                    response.json(funciones.MensajeError("Usuario ya cuenta con tesis"));
+                }
+                
+            }else{
+                response.json(funciones.MensajeError("Usuario no existe"));
+            }
+
+        }else{
+            response.redirect('/login'); 
+        }
 });
 
 app.listen(port,()=>{

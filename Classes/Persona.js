@@ -7,7 +7,7 @@ class persona{
     #password;
 
     constructor(informacion){
-        this.boleta=informacion.boleta;
+        this.boleta=informacion.Boleta;
         this.nombre=informacion.Nombre;
         this.#password=informacion.Password;
         let apellidos = informacion.Nombre.split(" ");

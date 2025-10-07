@@ -10,15 +10,45 @@
 <p>Agregar Alumnos</p>
 <p>Buscar por numero de boleta</p>
 <input id="busquedaAlumno">
-<table>
-    <tr>
-        <th>boleta</th>
-        <th>Nombre</th>
-        <th>Carrera</th>
-        <th>Agregar</th>
-    </tr>
-    <tbody>
+<button onclick="buscarAlumno()">buscar</button>
+<table >
+    <thead>
+        <tr>
+            <th>boleta</th>
+            <th>nombre</th>
+            <th>carrera</th>
+            <th>Agregar</th>
+        </tr>
+    </thead>
+    <tbody id="alumnos">
         
     </tbody>
 </table>
-<img src="\recursos\plus.png" class="botonAgregar" onclick="">
+
+<p>Alumnos Registrado</p>
+
+<table >
+    <thead>
+        <tr>
+            <th>boleta</th>
+            <th>nombre</th>
+            <th>Quitar</th>
+        </tr>
+    </thead>
+   
+    <tbody id="alumnoRegistrado">
+        
+    </tbody>
+</table>
+
+<p>Buscar asesor por nombre</p>
+<input id="buscarAsesor">
+<button onclick="">buscar</button>
+
+<p>Asesor Registrado</p>
+<ul id="asesorRegistrado">
+
+</ul>
+
+<button>Registrar Tesis</button>
+
