@@ -81,7 +81,6 @@ app.get('/contenido',async function(reques,response) {
     let contenido = reques.query.contenido;
 
     try{
-
         let ruta = path.join(__dirname,"html",`${contenido}.html`);
         let html = await fs.readFileSync(ruta, "utf8");
 
@@ -128,11 +127,9 @@ app.post('/login',async function (reques,response) {
 app.get('/alumno',async function (reques,response) {
         if(reques.session && reques.session.boleta){
             let boleta = reques.query.boleta;
-
             let data = await persona.Info(boleta);
 
             if(data){
-
                 if(!data.tesis){
                     response.json(data);
                 }else{
@@ -146,6 +143,45 @@ app.get('/alumno',async function (reques,response) {
         }else{
             response.redirect('/login'); 
         }
+});
+
+app.get("/asesor", async function (reques,response){
+    if(reques.session && reques.session.boleta){
+
+        let nombre = reques.query.nombre;
+        let data = await persona.Asesores(nombre);
+
+        if(data){
+            response.json(data); 
+        }else{
+            response.json(funciones.MensajeError("Asesor no existe"));
+        }
+
+    }else{
+        response.redirect('/login'); 
+    }
+})
+
+app.post("/Tesis",async function (reques,response) {
+    let datos = reques.body;
+     if(reques.session && reques.session.boleta){
+        if("alumnos" in Object.keys(datos) && "asesores" in Object.keys(datos)){
+            let respuesta = persona.registrarTesis(data,reques.session.boleta);
+
+            if(respuesta){
+                response.send({
+                    "message":"Registro exitoso"
+                });
+            }else{
+                response.send(funciones.MensajeError("No se puedo guardar cambios"));
+            }
+        }else{
+            response.send(funciones.MensajeError("falta informacion en la petición"));
+        }
+     }else{
+        response.redirect('/login');
+     }
+    
 });
 
 app.listen(port,()=>{

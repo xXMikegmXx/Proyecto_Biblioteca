@@ -43,12 +43,38 @@
 
 <p>Buscar asesor por nombre</p>
 <input id="buscarAsesor">
-<button onclick="">buscar</button>
+<button onclick="buscarAsesor()">buscar</button>
+
+<table >
+    <thead>
+        <tr>
+            <th>Numero de empleado</th>
+            <th>nombre</th>
+            <th>Especialidad</th>
+            <th>Area</th>
+            <th>Agregar</th>
+        </tr>
+    </thead>
+   
+    <tbody id="asesores">
+        
+    </tbody>
+</table>
 
 <p>Asesor Registrado</p>
-<ul id="asesorRegistrado">
+<table >
+    <thead>
+        <tr>
+            <th>Numero de empleado</th>
+            <th>nombre</th>
+            <th>Quitar</th>
+        </tr>
+    </thead>
+   
+    <tbody id="asesoresRegistrados">
+        
+    </tbody>
+</table>
 
-</ul>
-
-<button>Registrar Tesis</button>
+<button onclick="registarTesis()">Registrar Tesis</button>
 

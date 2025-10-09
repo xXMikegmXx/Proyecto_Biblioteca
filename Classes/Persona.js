@@ -7,6 +7,7 @@ class persona{
     #password;
 
     constructor(informacion){
+        
         this.boleta=informacion.Boleta;
         this.nombre=informacion.Nombre;
         this.#password=informacion.Password;
@@ -19,9 +20,11 @@ class persona{
 
         if(this.tesis == null){
             this.asesores=[];
+            this.alumnos=[];
         }
         
         this.tipo = informacion.Estatus_Alumno;
+        
     }
 
     static async Ingresar(form){
@@ -56,8 +59,37 @@ class persona{
         }
     }
 
+    static async Asesores(nombre){
+        try{
+
+            if(!nombre){
+                return false;
+            }
+
+            let db = new DB();
+            let script = "SELECT * FROM Asesores WHERE nombre COLLATE utf8_general_ci LIKE CONCAT('%', ? , '%');";
+            const params = [nombre];
+            const respuesta = await db.pool.query(script,params);
+
+            if(respuesta[0].length > 0){
+                return respuesta[0];
+            }else{
+                return false;
+            }
+
+        }catch(e){
+            return false
+        }
+        
+    }
+
+    static async registrarTesis(data,boleta){
+        
+    }
+
     static async Info(boleta){
         try{
+
             let db = new DB();
             let script = "SELECT * FROM Alumno WHERE Boleta= ? LIMIT 1";
 
@@ -70,7 +102,6 @@ class persona{
             }else{
                 return false;
             }
-
         }catch(e){
             throw e;
         }
@@ -85,6 +116,9 @@ class persona{
         }
     }
 
+    informacionTesis(boleta){
+        
+    }
 }
 
 module.exports = persona

@@ -59,7 +59,7 @@ function buscarAlumno(){
         button.setAttribute("nombre",dato["nombre"]);
 
         button.addEventListener("click",(e)=>{
-          agregarAlumno(e.target.getAttribute("boleta"),e.target.getAttribute("nombre"));
+          agregarAlumno(e.target.getAttribute("boleta"),e.target.getAttribute("nombre"),"alumnoRegistrado");
         });
 
         let th = document.createElement("th");
@@ -70,8 +70,8 @@ function buscarAlumno(){
     });
 }
 
-function agregarAlumno(boleta,nombre){
-  let lista =document.getElementById("alumnoRegistrado");
+function agregarAlumno(boleta,nombre,tabla){
+  let lista =document.getElementById(tabla);
 
   for(let row of lista.rows){
     for (let celda of row.cells) {
@@ -95,9 +95,9 @@ function agregarAlumno(boleta,nombre){
   button.src="/recursos/menos.png";
   button.className="botonAgregar";
   button.setAttribute("boleta",boleta);
-
+  button.setAttribute("tabla",tabla);
   button.addEventListener("click",(e)=>{
-          eliminarAlumno(e.target.getAttribute("boleta"));
+          eliminarAlumno(e.target.getAttribute("boleta"),e.target.getAttribute("tabla"));
         });
 
   th3.appendChild(button);
@@ -106,8 +106,8 @@ function agregarAlumno(boleta,nombre){
   lista.appendChild(tr);
 }
 
-function eliminarAlumno(boleta){
-  let lista =document.getElementById("alumnoRegistrado");
+function eliminarAlumno(boleta,tabla){
+  let lista =document.getElementById(tabla);
 
   for(let row of lista.rows){
     for (let celda of row.cells) {
@@ -120,7 +120,64 @@ function eliminarAlumno(boleta){
 
 }
 
-function agregarAsesor(){
-  
+function buscarAsesor(){
+  const head = ["ID_Asesores","Nombre","Especialidad","Area"];
+  const nombre = document.getElementById("buscarAsesor");
+
+  fetch(`/asesor?nombre=${nombre.value}`)
+  .then(respuesta => respuesta.json())
+  .then(dato =>{
+    let asesores = document.getElementById("asesores");
+    asesores.innerHTML="";
+
+    if("error" in dato){
+
+    }else{
+      dato.forEach(element => {
+        let tr= document.createElement("tr");
+
+        head.forEach(title=>{
+          let th = document.createElement("th");
+          th.innerText=element[title];
+          tr.appendChild(th);
+        });
+        
+        th = document.createElement("th");
+        let img = document.createElement("img");
+        img.src="/recursos/plus.png";
+        img.className="botonAgregar";
+        img.setAttribute("Id",element["ID_Asesores"]);
+        img.setAttribute("nombre",element["Nombre"]);
+        img.addEventListener("click",(e)=>{
+          agregarAlumno(e.target.getAttribute("Id"),e.target.getAttribute("nombre"),"asesoresRegistrados");
+        });
+
+        th.appendChild(img);
+        tr.appendChild(th);
+
+        asesores.appendChild(tr);
+      });
+    };
+  })
 }
 
+function registarTesis(){
+
+  const alumno = document.getElementById("alumnoRegistrado");
+  const asesores = document.getElementById("asesoresRegistrados");
+
+  let data={
+    "asesores":[],
+    "alumnos":[]
+  }
+
+  for(let row of alumno.rows){
+    data.alumnos.push(row.cells[0].textContent);
+  }
+
+  for(let row of asesores.rows){
+    data.asesores.push(row.cells[0].textContent);
+  }
+
+  console.log(data);
+}
