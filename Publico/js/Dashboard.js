@@ -1,3 +1,4 @@
+const { json } = require("express");
 
 async function contenidoTesis(){
     const contenido = await fetch("/contenido?contenido=Tesis");
@@ -165,8 +166,10 @@ function registarTesis(){
 
   const alumno = document.getElementById("alumnoRegistrado");
   const asesores = document.getElementById("asesoresRegistrados");
+  const nombre = document.getElementById("nombreTesis").innerText;
 
   let data={
+    "nombreTesis": nombre,
     "asesores":[],
     "alumnos":[]
   }
@@ -178,6 +181,16 @@ function registarTesis(){
   for(let row of asesores.rows){
     data.asesores.push(row.cells[0].textContent);
   }
-
   console.log(data);
+  fetch("/Tesis",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify(data)
+  })
+  .then(response=>response.json()).then(res=>{
+    console.log(res);
+  }
+  );
 }

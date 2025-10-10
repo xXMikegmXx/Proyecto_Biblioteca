@@ -84,6 +84,12 @@ class persona{
     }
 
     static async registrarTesis(data,boleta){
+        try{
+            let db = new DB();
+            let script = "INSERT INTO Tesis(Descripcion,Tema,Nombre,URL_PDF) VALUE(?)";
+        }catch(e){
+            return true;
+        }
         
     }
 

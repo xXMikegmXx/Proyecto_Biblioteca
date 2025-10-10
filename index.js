@@ -164,9 +164,11 @@ app.get("/asesor", async function (reques,response){
 
 app.post("/Tesis",async function (reques,response) {
     let datos = reques.body;
+    console.log(datos);
      if(reques.session && reques.session.boleta){
-        if("alumnos" in Object.keys(datos) && "asesores" in Object.keys(datos)){
-            let respuesta = persona.registrarTesis(data,reques.session.boleta);
+        
+        if(datos["nombreTesis"] != null && datos["asesores"].length > 0 ){
+            let respuesta = persona.registrarTesis(datos,reques.session.boleta);
 
             if(respuesta){
                 response.send({

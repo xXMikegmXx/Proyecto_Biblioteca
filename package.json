@@ -4,6 +4,7 @@
   "description": "Creación de un sistema para el control de tesis y sus entregas.",
   "main": "index.js",
   "scripts": {
+    "start":"node index.js",
     "test": "jest"
   },
   "keywords": [
