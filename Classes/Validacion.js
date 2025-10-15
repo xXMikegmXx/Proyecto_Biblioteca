@@ -1,19 +1,14 @@
-class Validacion{
+class Validacion {
 
-    static EsBoleta (Boleta){
+    static EsBoleta(Boleta) {
         const expresionNumerico = /^[0-9]+$/;
-
-        if(expresionNumerico.test(Boleta) == true && Boleta.length == 10){
-            return true;
-        }else{
-            return false;
-        }
+        return expresionNumerico.test(Boleta) && Boleta.length === 10;
     }
 
     static EsCorreo(correo) {
         const expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!expresionCorreo.test(correo)) return false;
-    
+
         const dominiosPermitidos = [
             "gmail.com",
             "yahoo.com",
@@ -22,11 +17,11 @@ class Validacion{
             "ipn.mx",
             "alumno.ipn.mx"
         ];
-    
+
         const dominio = correo.split("@")[1].toLowerCase();
         return dominiosPermitidos.includes(dominio);
     }
-    
+
 }
 
-module.exports = Validacion;
+export default Validacion;
