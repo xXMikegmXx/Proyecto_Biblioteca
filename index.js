@@ -130,7 +130,7 @@ app.get('/alumno',async function (reques,response) {
             let data = await persona.Info(boleta);
 
             if(data){
-                if(!data.tesis){
+                if(!data.tesis &&  boleta != reques.session.boleta){
                     response.json(data);
                 }else{
                     response.json(funciones.MensajeError("Usuario ya cuenta con tesis"));
@@ -167,8 +167,9 @@ app.post("/Tesis",async function (reques,response) {
     console.log(datos);
      if(reques.session && reques.session.boleta){
         
-        if(datos["nombreTesis"] != null && datos["asesores"].length > 0 ){
-            let respuesta = persona.registrarTesis(datos,reques.session.boleta);
+        if(datos.nombreTesis != null && datos.asesores.length > 0 ){
+            let alumno = persona.Info(reques.session.boleta);
+            let respuesta = alumno.registrarTesis(datos);
 
             if(respuesta){
                 response.send({

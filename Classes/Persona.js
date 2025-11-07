@@ -83,13 +83,23 @@ class persona{
         
     }
 
-    static async registrarTesis(data,boleta){
+    async registrarTesis(data){
         try{
-            let db = new DB();
-            let script = "INSERT INTO Tesis(Descripcion,Tema,Nombre,URL_PDF) VALUE(?)";
+
+            if(this.guardarPDF(data.pdf64)){
+                let db = new DB();
+                let script = "INSERT INTO Tesis(Descripcion,Tema,Nombre,URL_PDF,ID_Tesis) VALUE(?,null,?,null,?)";
+            }else{
+                return false;
+            }
+            
         }catch(e){
-            return true;
+            return false;
         }
+        
+    }
+
+    async guardarPDF(pdf64){
         
     }
 
@@ -123,6 +133,10 @@ class persona{
     }
 
     informacionTesis(boleta){
+        
+    }
+
+    crearFormatos(){
         
     }
 }

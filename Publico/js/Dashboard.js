@@ -1,4 +1,3 @@
-const { json } = require("express");
 
 async function contenidoTesis(){
     const contenido = await fetch("/contenido?contenido=Tesis");
@@ -162,16 +161,24 @@ function buscarAsesor(){
   })
 }
 
-function registarTesis(){
+async function registarTesis(){
 
   const alumno = document.getElementById("alumnoRegistrado");
   const asesores = document.getElementById("asesoresRegistrados");
+  const descripcion= document.getElementById("description");
   const nombre = document.getElementById("nombreTesis").innerText;
+  const pdf = document.getElementById("pdf");
+
+  const file = pdf.files[0];
+  const arrayBuffer = await file.arrayBuffer();
+  const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
 
   let data={
     "nombreTesis": nombre,
+    "Descripcion": descripcion,
     "asesores":[],
-    "alumnos":[]
+    "alumnos":[],
+    "pdf64":base64
   }
 
   for(let row of alumno.rows){
