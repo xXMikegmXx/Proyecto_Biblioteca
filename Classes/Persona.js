@@ -1,6 +1,9 @@
 const DB = require('./DB');
 const validar = require('./Validacion');
 const genericas = require('./FuncionesGenericas');
+const fs = require("fs");
+const path = require("path");
+const { PDFDocument, StandardFonts, rgb } = require("pdf-lib");
 
 class persona{
 
@@ -136,9 +139,41 @@ class persona{
         
     }
 
-    crearFormatos(){
-        
+    static async CrearFormatos(boleta) {
+        try {
+            const database = new DB();
+    
+            const [rows] = await database.pool.query(
+                "SELECT * FROM alumno WHERE Boleta = ?",
+                [boleta]
+            );
+    
+            if (rows.length === 0) throw new Error("Alumno no encontrado");
+    
+            const alumno = rows[0];
+    
+            const pdfPath = path.join(__dirname, "../formatos/Formato de no adeudo.pdf");
+            const pdfBytes = fs.readFileSync(pdfPath);
+            const pdfDoc = await PDFDocument.load(pdfBytes);
+    
+            const page = pdfDoc.getPage(0);
+            const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    
+            page.drawText(` ${alumno.Nombre}`, { x: 180, y: 498, size: 12, font});
+            page.drawText(` ${alumno.Boleta}`, { x: 180, y: 408, size: 12, font});
+            page.drawText(` ${alumno.Carrera}`, { x: 400, y: 408, size: 12, font});
+    
+            const outputPath = path.join(__dirname, `../formatos/formato_${boleta}.pdf`);
+            const pdfFinal = await pdfDoc.save();
+            fs.writeFileSync(outputPath, pdfFinal);
+    
+            console.log(`✅ Formato generado: ${outputPath}`);
+            return { success: true, path: outputPath };
+    
+        } catch (error) {
+            console.error("❌ Error al crear el formato:", error);
+            return { success: false, error: error.message };
+        }
     }
 }
-
-module.exports = persona
+module.exports = persona;

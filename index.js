@@ -187,6 +187,18 @@ app.post("/Tesis",async function (reques,response) {
     
 });
 
+app.get('/formato/:boleta', async (req, res) => {
+    const { boleta } = req.params;
+    const resultado = await persona.CrearFormatos(boleta);
+  
+    if (!resultado.success) {
+      return res.status(500).json({ error: resultado.error });
+    }
+  
+    // Enviar el PDF generado al navegador
+    res.sendFile(resultado.path);
+  });
+
 app.listen(port,()=>{
     console.log(`Servicio en alta escuchando en el puerto : ${port}`);
     db.CrearConexion();
